@@ -1,0 +1,310 @@
+<title>Roysel Ek Argaez</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap">
+<style>
+  :root{
+    --page:#0F172A;
+    --card:#1E293B;
+    --card-line:rgba(226,232,240,.12);
+    --side:#E2E8F0;
+    --side-ink:#0F172A;
+    --side-muted:rgba(15,23,42,.62);
+    --side-line:rgba(15,23,42,.12);
+    --ink:#E2E8F0;
+    --muted:#94A3B8;
+    --teal:#2DD4BF;
+    --teal-soft:rgba(45,212,191,.14);
+    --avatar-a:#14B8A6;
+    --avatar-b:#0E7490;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    background:var(--page);
+    color:var(--ink);
+    font-family:'Space Grotesk','Space Grotesk Fallback',system-ui,sans-serif;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{ max-width:980px; margin:0 auto; padding:48px 20px 80px; }
+  .topbar{
+    display:flex; justify-content:space-between; align-items:center;
+    padding:0 4px 28px; font-size:13px; letter-spacing:.04em; color:var(--muted);
+  }
+  .topbar .brand{ color:var(--ink); font-weight:600; }
+  .card{
+    background:var(--card);
+    border-radius:32px;
+    border:1px solid var(--card-line);
+    overflow:hidden;
+    display:grid;
+    grid-template-columns:270px 1fr;
+  }
+  /* ---- SIDEBAR ---- */
+  .sidebar{ background:var(--side); color:var(--side-ink); padding:40px 32px; }
+  .avatar{
+    width:96px; height:96px; border-radius:50%;
+    background:linear-gradient(135deg,var(--avatar-a),var(--avatar-b));
+    display:flex; align-items:center; justify-content:center;
+    font-size:30px; font-weight:700; color:#F0FDFA;
+    margin-bottom:28px;
+  }
+  .side-block{ margin-bottom:26px; }
+  .side-block:last-child{ margin-bottom:0; }
+  .side-h{
+    font-size:11px; font-weight:600; letter-spacing:.18em; text-transform:uppercase;
+    color:var(--side-muted); margin:0 0 12px;
+  }
+  .side-item{ margin-bottom:12px; }
+  .side-item:last-child{ margin-bottom:0; }
+  .side-label{ font-size:10.5px; letter-spacing:.1em; text-transform:uppercase; color:var(--side-muted); }
+  .side-value{ font-size:13.5px; font-weight:600; margin-top:1px; word-break:break-word; }
+  .side-value a{ color:var(--side-ink); text-decoration:none; }
+  .side-value a:hover{ color:var(--avatar-b); }
+  ul.expertise{ list-style:none; margin:0; padding:0; }
+  ul.expertise li{ font-size:13px; padding-left:14px; position:relative; margin-bottom:10px; line-height:1.4; }
+  ul.expertise li::before{ content:""; position:absolute; left:0; top:6px; width:5px; height:5px; border-radius:50%; background:var(--avatar-b); }
+  ul.certs-side{ list-style:none; margin:0; padding:0; }
+  ul.certs-side li{ font-size:12px; margin-bottom:8px; line-height:1.4; }
+  ul.certs-side li b{ display:block; font-weight:600; }
+  ul.certs-side li span{ color:var(--side-muted); font-size:11px; }
+
+  /* ---- MAIN ---- */
+  .main{ padding:40px 44px 48px; }
+  .head-row{ display:flex; justify-content:space-between; align-items:flex-start; gap:16px; margin-bottom:34px; }
+  h1{ font-size:38px; font-weight:600; margin:0 0 6px; letter-spacing:-.01em; }
+  .role{ font-size:13px; font-weight:600; letter-spacing:.28em; text-transform:uppercase; color:var(--teal); }
+  .dl-btn{
+    width:42px; height:42px; border-radius:50%; border:1px solid var(--card-line);
+    background:transparent; color:var(--ink); cursor:pointer; flex:none;
+    display:flex; align-items:center; justify-content:center;
+  }
+  .dl-btn:hover{ border-color:var(--teal); color:var(--teal); }
+  .dl-btn:focus-visible{ outline:2px solid var(--teal); outline-offset:2px; }
+
+  section.block{ margin-bottom:36px; }
+  section.block:last-child{ margin-bottom:0; }
+  h2.sec{
+    font-size:15px; font-weight:600; letter-spacing:.3em; text-transform:uppercase;
+    color:var(--ink); margin:0 0 16px; padding-bottom:12px; border-bottom:1px solid var(--card-line);
+  }
+  .profile p{ font-size:14.5px; color:var(--muted); line-height:1.75; margin:0 0 12px; max-width:60ch; }
+  .profile p:last-child{ margin-bottom:0; }
+
+  /* selected work blocks (used for Lixor sub-products) */
+  .work-item{ margin-bottom:18px; }
+  .work-item:last-child{ margin-bottom:0; }
+  .work-item .wt{ font-size:14.5px; font-weight:700; margin-bottom:4px; display:flex; align-items:baseline; gap:9px; flex-wrap:wrap; }
+  .work-item .status{
+    font-size:10px; letter-spacing:.08em; text-transform:uppercase; font-weight:600;
+    color:var(--teal); background:var(--teal-soft); border-radius:5px; padding:2px 7px;
+  }
+  .work-item p{ font-size:13.5px; color:var(--muted); margin:0; line-height:1.6; }
+
+  /* experience timeline */
+  .job{ position:relative; padding-left:26px; padding-bottom:28px; }
+  .job::before{ content:""; position:absolute; left:5px; top:6px; bottom:0; width:1px; background:var(--card-line); }
+  .job:last-child{ padding-bottom:0; }
+  .job:last-child::before{ display:none; }
+  .job::after{
+    content:""; position:absolute; left:0; top:4px; width:11px; height:11px; border-radius:50%;
+    background:var(--card); border:2px solid var(--teal);
+  }
+  .job-date{ font-size:11.5px; letter-spacing:.1em; text-transform:uppercase; color:var(--muted); }
+  .job-title{ font-size:15.5px; font-weight:700; margin-top:4px; }
+  .job-org{ font-size:13px; color:var(--muted); margin-bottom:10px; }
+  .job ul.bullets{ margin:0; padding-left:18px; }
+  .job ul.bullets li{ font-size:13.5px; color:var(--muted); margin-bottom:7px; line-height:1.6; }
+  .job ul.bullets li b{ color:var(--ink); font-weight:600; }
+  .job .stack{ font-size:11.5px; color:var(--muted); margin-top:10px; opacity:.85; }
+  .subwork{ margin-top:16px; padding-top:16px; border-top:1px dashed var(--card-line); }
+  .projects-mini{ margin:10px 0 0; padding-left:18px; }
+  .projects-mini li{ font-size:12.5px; color:var(--muted); margin-bottom:4px; }
+  .projects-mini b{ color:var(--ink); }
+
+  table.skills{ width:100%; border-collapse:collapse; }
+  table.skills tr{ border-top:1px solid var(--card-line); }
+  table.skills tr:first-child{ border-top:none; }
+  table.skills td{ padding:10px 0; vertical-align:top; font-size:13.5px; }
+  table.skills td.label{ width:150px; color:var(--teal); font-weight:600; font-size:11.5px; letter-spacing:.06em; text-transform:uppercase; padding-right:16px; }
+  table.skills td.value{ color:var(--muted); }
+
+  @media (max-width:760px){
+    .card{ grid-template-columns:1fr; border-radius:20px; }
+    .main{ padding:32px 24px; }
+    .sidebar{ padding:32px 24px; }
+  }
+
+  @media print{
+    body{ background:#fff; }
+    .wrap{ padding:0; max-width:100%; }
+    .topbar{ display:none; }
+    .card{ display:block; border-radius:0; border:none; background:#fff; }
+    .sidebar{ background:#fff; color:#0F172A; padding:0 0 24px; }
+    .side-muted{ color:#4b5563; }
+    .main{ padding:0; }
+    :root{ --card:#fff; --ink:#0F172A; --muted:#3f4b5c; --card-line:#dde3ea; --teal:#0C7C74; --teal-soft:#e6f6f4; --side:#fff; --side-ink:#0F172A; --side-muted:#4b5563; --side-line:#dde3ea; }
+    .dl-btn{ display:none; }
+    .job{ break-inside:avoid; }
+    a{ color:inherit; text-decoration:none; }
+  }
+</style>
+
+<div class="wrap">
+  <div class="topbar">
+    <span class="brand">roysel.dev</span>
+    <span>CV</span>
+  </div>
+
+  <div class="card">
+
+    <aside class="sidebar">
+      <div class="avatar">RA</div>
+
+      <div class="side-block">
+        <p class="side-h">Contacto</p>
+        <div class="side-item"><div class="side-label">Email</div><div class="side-value"><a href="mailto:royargaez@protonmail.com">royargaez@protonmail.com</a></div></div>
+        <div class="side-item"><div class="side-label">Teléfono</div><div class="side-value">+52 (998) 101-8326</div></div>
+        <div class="side-item"><div class="side-label">LinkedIn</div><div class="side-value"><a href="https://linkedin.com/in/royargaez">/in/royargaez</a></div></div>
+        <div class="side-item"><div class="side-label">GitHub</div><div class="side-value"><a href="https://github.com/RoyArgaez">/RoyArgaez</a></div></div>
+        <div class="side-item"><div class="side-label">Ubicación</div><div class="side-value">Cancún, México</div></div>
+      </div>
+
+      <div class="side-block">
+        <p class="side-h">Educación</p>
+        <div class="side-item"><div class="side-value">Ingeniería en Software</div><div class="side-label" style="margin-top:2px;">Universidad Politécnica de Quintana Roo</div></div>
+        <div class="side-item"><div class="side-value">Ingeniería en Telemática</div><div class="side-label" style="margin-top:2px;">Universidad del Caribe</div></div>
+        <div class="side-item"><div class="side-value">Técnico en Informática Administrativa</div><div class="side-label" style="margin-top:2px;">Universidad del Sur</div></div>
+      </div>
+
+      <div class="side-block">
+        <p class="side-h">Expertise</p>
+
+        <p class="side-sub">Core</p>
+        <ul class="expertise">
+          <li>Agentes de código y orquestación multi-agente</li>
+          <li>Arquitectura de sistemas y diseño de producto</li>
+          <li>Integración de LLMs en producción</li>
+          <li>Diseño y operación de infraestructura propia</li>
+          <li>Integración de APIs y normalización de datos</li>
+          <li>Seguridad aplicada (cifrado, auditoría firmada)</li>
+        </ul>
+
+        <p class="side-sub">Stack</p>
+        <div class="side-item"><div class="side-value" style="font-weight:500;">PHP, Python, JavaScript/TypeScript</div></div>
+        <div class="side-item"><div class="side-value" style="font-weight:500;">Laravel, React</div></div>
+        <div class="side-item"><div class="side-value" style="font-weight:500;">Claude Code, opencode, Codex, Herdr, MCP, Gemini</div></div>
+
+        <p class="side-sub">Infraestructura</p>
+        <div class="side-item"><div class="side-value" style="font-weight:500;">PostgreSQL, MySQL, Redis, Nginx</div></div>
+        <div class="side-item"><div class="side-value" style="font-weight:500;">VPS, Linux, Git, CI/CD</div></div>
+
+        <p class="side-sub">Prácticas</p>
+        <div class="side-item"><div class="side-value" style="font-weight:500;">PHPUnit, TDD</div></div>
+        <div class="side-item"><div class="side-value" style="font-weight:500;">Service Layer, Repository Pattern, multi-tenancy</div></div>
+      </div>
+
+      <div class="side-block">
+        <p class="side-h">Idiomas</p>
+        <div class="side-item"><div class="side-value">Español</div><div class="side-label" style="margin-top:2px;">Nativo</div></div>
+        <div class="side-item"><div class="side-value">Inglés</div><div class="side-label" style="margin-top:2px;">Intermedio — técnico</div></div>
+      </div>
+    </aside>
+
+    <main class="main">
+      <div class="head-row">
+        <div>
+          <h1>Roysel Ek Argaez</h1>
+          <div class="role">Senior Backend Engineer</div>
+        </div>
+        <button class="dl-btn" onclick="window.print()" aria-label="Descargar PDF" title="Descargar PDF">↓</button>
+      </div>
+
+      <section class="block profile">
+        <h2 class="sec">Perfil</h2>
+        <p>Ingeniero de software con más de 12 años de experiencia en desarrollo backend y arquitectura de sistemas. Construyo y opero productos de software en producción, con responsabilidad completa sobre arquitectura, desarrollo e infraestructura.</p>
+      </section>
+
+      <section class="block">
+        <h2 class="sec">Trabajo destacado</h2>
+        <div class="work-item">
+          <div class="wt">OfertasIA — ofertasia.mx</div>
+          <p>Plataforma de inteligencia de afiliados de e-commerce, con integraciones a Awin, Commission Junction y Mercado Libre, y scoring y matching propio de producto.</p>
+        </div>
+        <div class="work-item">
+          <div class="wt">Vialibre</div>
+          <p>Plataforma B2B para sellers de Mercado Libre que evalúa si pueden sostener una campaña comercial sin quebrar stock ni destruir margen.</p>
+        </div>
+      </section>
+
+      <section class="block">
+        <h2 class="sec">Experiencia</h2>
+
+        <div class="job">
+          <div class="job-date">Feb 2024 — Presente</div>
+          <div class="job-title">Lixor · Fundador y Arquitecto Técnico</div>
+          <div class="job-org">Cancún, México</div>
+          <ul class="bullets">
+            <li>Diseño y opero la arquitectura de Lixor sobre infraestructura propia.</li>
+            <li>Construí las integraciones con redes de afiliación y marketplaces que alimentan OfertasIA.</li>
+            <li>Desarrollé los algoritmos propios de scoring y matching de producto.</li>
+            <li>Extraje una librería interna compartida (armor-core), reutilizada entre los productos de Lixor.</li>
+            <li>Diseñé un flujo de desarrollo multi-agente (Claude Code, opencode, Codex, orquestados con Herdr) con revisión cruzada obligatoria antes de cada cambio.</li>
+          </ul>
+          <div class="stack">Stack: PHP 8.3 · Laravel 13 · PostgreSQL 16 · Redis · Nginx</div>
+        </div>
+
+        <div class="job">
+          <div class="job-date">Ene 2023 — Ene 2024</div>
+          <div class="job-title">Desarrollador Backend</div>
+          <div class="job-org">Viajes Caribe Maya · Cancún, México</div>
+          <ul class="bullets">
+            <li>Refactoricé código base legacy en PHP y Laravel, reduciendo deuda técnica y mejorando la mantenibilidad del sistema.</li>
+            <li>Optimicé queries complejas en PostgreSQL mediante análisis y rediseño de índices, mejorando tiempos de respuesta en APIs críticas del sistema hotelero.</li>
+            <li>Mejoré el rendimiento de APIs REST del sector turístico con caching estratégico y refactorización de endpoints de alto tráfico.</li>
+            <li>Desarrollé módulos backend integrados con interfaces React, coordinando con el equipo de frontend.</li>
+          </ul>
+        </div>
+
+        <div class="job">
+          <div class="job-date">Oct 2022 — Ene 2023</div>
+          <div class="job-title">Desarrollador de Software</div>
+          <div class="job-org">Marketing Dirigido · Cancún, México</div>
+          <ul class="bullets">
+            <li>Desarrollé aplicaciones web a medida en PHP, traduciendo requerimientos de negocio en soluciones técnicas estructuradas.</li>
+            <li>Integré y mantuve APIs RESTful para comunicación con servicios externos.</li>
+            <li>Implementé mejoras de rendimiento y usabilidad en sistemas web existentes.</li>
+          </ul>
+        </div>
+
+        <div class="job">
+          <div class="job-date">Feb 2014 — Jun 2022</div>
+          <div class="job-title">Desarrollador de Software Senior</div>
+          <div class="job-org">IRCSA Software · Cancún, México</div>
+          <ul class="bullets">
+            <li>Diseñé y desarrollé 9+ sistemas web empresariales — facturación electrónica SAT/CFDI, logística, gestión residencial, flota vehicular, náutico y seguridad corporativa — varios en producción desde 2014.</li>
+            <li>Arquitecté una plataforma de facturación electrónica con integración SAT/CFDI: generación, validación y gestión de documentos fiscales en XML.</li>
+            <li>Dirigí proyectos full-stack de principio a fin: análisis con clientes, arquitectura, desarrollo con PHP/Yii/Yii2, entrega de sistemas con 8+ años en producción.</li>
+            <li>Lideré la modernización de aplicaciones legacy y la resolución de bugs críticos en producción.</li>
+          </ul>
+          <ul class="projects-mini">
+            <li><b>Facturación Electrónica</b> — plataforma SAT/CFDI para emisión y gestión de facturas XML</li>
+            <li><b>DHOPAQ</b> — logística y trazabilidad para empresa de paquetería</li>
+            <li><b>CEGAPER</b> — gestión de flota vehicular para renta y transporte de tours</li>
+            <li><b>Q&amp;P Admon</b> — administración de condominios</li>
+            <li><b>Marine Pro-V</b> — plataforma para operadores del sector náutico</li>
+            <li><b>Inteligencia Preventiva</b> — plataforma para empresa de seguridad corporativa</li>
+          </ul>
+        </div>
+
+        <div class="job">
+          <div class="job-date">Jun 2013 — Dic 2013</div>
+          <div class="job-title">Desarrollador de Software</div>
+          <div class="job-org">AVANTO · México</div>
+          <ul class="bullets">
+            <li>Desarrollé y optimicé aplicaciones web con PHP, Yii Framework y Bootstrap CSS.</li>
+          </ul>
+        </div>
+      </section>
+
+    </main>
+  </div>
+</div>
