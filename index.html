@@ -1,28 +1,30 @@
+<meta charset="UTF-8">
 <title>Roysel Ek Argaez</title>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,600;12..96,700&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
 <style>
   :root{
-    --page:#0F172A;
-    --card:#1E293B;
-    --card-line:rgba(226,232,240,.12);
-    --side:#E2E8F0;
-    --side-ink:#0F172A;
-    --side-muted:rgba(15,23,42,.62);
-    --side-line:rgba(15,23,42,.12);
-    --ink:#E2E8F0;
-    --muted:#94A3B8;
-    --teal:#2DD4BF;
-    --teal-soft:rgba(45,212,191,.14);
-    --avatar-a:#14B8A6;
-    --avatar-b:#0E7490;
+    /* paleta real de OfertasIA (design-system.css), no genérica */
+    --page:#08222B;
+    --card:#0C2329;
+    --card-line:rgba(234,243,243,.10);
+    --side:#E7F2F2;
+    --side-ink:#0C2329;
+    --side-muted:rgba(12,35,41,.62);
+    --side-line:rgba(12,35,41,.12);
+    --ink:#EAF3F3;
+    --muted:#9FB6B8;
+    --teal:#28B8C8;
+    --teal-deep:#0F6F7D;
+    --teal-soft:rgba(40,184,200,.14);
   }
   *{box-sizing:border-box;}
   body{
     margin:0;
     background:var(--page);
     color:var(--ink);
-    font-family:'Space Grotesk','Space Grotesk Fallback',system-ui,sans-serif;
+    font-family:'Plus Jakarta Sans',system-ui,sans-serif;
     -webkit-font-smoothing:antialiased;
+    -webkit-print-color-adjust:exact; print-color-adjust:exact;
   }
   .wrap{ max-width:980px; margin:0 auto; padding:48px 20px 80px; }
   .topbar{
@@ -42,7 +44,7 @@
   .sidebar{ background:var(--side); color:var(--side-ink); padding:40px 32px; }
   .avatar{
     width:96px; height:96px; border-radius:50%;
-    background:linear-gradient(135deg,var(--avatar-a),var(--avatar-b));
+    background:linear-gradient(135deg,var(--teal),var(--teal-deep));
     display:flex; align-items:center; justify-content:center;
     font-size:30px; font-weight:700; color:#F0FDFA;
     margin-bottom:28px;
@@ -53,15 +55,20 @@
     font-size:11px; font-weight:600; letter-spacing:.18em; text-transform:uppercase;
     color:var(--side-muted); margin:0 0 12px;
   }
+  .side-sub{
+    font-size:10px; font-weight:700; letter-spacing:.1em; text-transform:uppercase;
+    color:var(--side-ink); opacity:.6; margin:14px 0 8px;
+  }
+  .side-sub:first-of-type{ margin-top:0; }
   .side-item{ margin-bottom:12px; }
   .side-item:last-child{ margin-bottom:0; }
   .side-label{ font-size:10.5px; letter-spacing:.1em; text-transform:uppercase; color:var(--side-muted); }
   .side-value{ font-size:13.5px; font-weight:600; margin-top:1px; word-break:break-word; }
   .side-value a{ color:var(--side-ink); text-decoration:none; }
-  .side-value a:hover{ color:var(--avatar-b); }
+  .side-value a:hover{ color:var(--teal-deep); }
   ul.expertise{ list-style:none; margin:0; padding:0; }
   ul.expertise li{ font-size:13px; padding-left:14px; position:relative; margin-bottom:10px; line-height:1.4; }
-  ul.expertise li::before{ content:""; position:absolute; left:0; top:6px; width:5px; height:5px; border-radius:50%; background:var(--avatar-b); }
+  ul.expertise li::before{ content:""; position:absolute; left:0; top:6px; width:5px; height:5px; border-radius:50%; background:var(--teal-deep); }
   ul.certs-side{ list-style:none; margin:0; padding:0; }
   ul.certs-side li{ font-size:12px; margin-bottom:8px; line-height:1.4; }
   ul.certs-side li b{ display:block; font-weight:600; }
@@ -70,7 +77,7 @@
   /* ---- MAIN ---- */
   .main{ padding:40px 44px 48px; }
   .head-row{ display:flex; justify-content:space-between; align-items:flex-start; gap:16px; margin-bottom:34px; }
-  h1{ font-size:38px; font-weight:600; margin:0 0 6px; letter-spacing:-.01em; }
+  h1{ font-family:'Bricolage Grotesque',system-ui,sans-serif; font-size:38px; font-weight:600; margin:0 0 6px; letter-spacing:-.01em; }
   .role{ font-size:13px; font-weight:600; letter-spacing:.28em; text-transform:uppercase; color:var(--teal); }
   .dl-btn{
     width:42px; height:42px; border-radius:50%; border:1px solid var(--card-line);
@@ -133,18 +140,31 @@
     .sidebar{ padding:32px 24px; }
   }
 
+  /* ---- ATS: documento plano, aparte, solo para impresión/descarga ---- */
+  .ats{ display:none; }
   @media print{
-    body{ background:#fff; }
-    .wrap{ padding:0; max-width:100%; }
-    .topbar{ display:none; }
-    .card{ display:block; border-radius:0; border:none; background:#fff; }
-    .sidebar{ background:#fff; color:#0F172A; padding:0 0 24px; }
-    .side-muted{ color:#4b5563; }
-    .main{ padding:0; }
-    :root{ --card:#fff; --ink:#0F172A; --muted:#3f4b5c; --card-line:#dde3ea; --teal:#0C7C74; --teal-soft:#e6f6f4; --side:#fff; --side-ink:#0F172A; --side-muted:#4b5563; --side-line:#dde3ea; }
-    .dl-btn{ display:none; }
-    .job{ break-inside:avoid; }
-    a{ color:inherit; text-decoration:none; }
+    .wrap{ display:none; }
+    .ats{
+      display:block; background:#fff; color:#111; max-width:100%;
+      font-family:'Plus Jakarta Sans',system-ui,sans-serif; font-size:11pt; line-height:1.45;
+    }
+    .ats h1{ font-size:19pt; font-weight:700; margin:0 0 2px; color:#0C2329; }
+    .ats .ats-title{ font-size:11pt; color:#333; margin-bottom:8px; }
+    .ats .ats-contact{ font-size:9.5pt; color:#333; margin-bottom:16px; }
+    .ats .ats-contact a{ color:#333; }
+    .ats h2{
+      font-size:11pt; font-weight:700; letter-spacing:.08em; text-transform:uppercase;
+      border-bottom:1px solid #999; padding-bottom:3px; margin:16px 0 8px;
+    }
+    .ats .ats-item{ margin-bottom:10px; }
+    .ats .ats-item-head{ display:flex; justify-content:space-between; gap:10px; font-weight:700; }
+    .ats .ats-item-sub{ font-size:9.5pt; color:#444; margin-bottom:3px; }
+    .ats p{ margin:0 0 6px; }
+    .ats ul{ margin:0 0 6px; padding-left:16px; }
+    .ats li{ margin-bottom:3px; }
+    .ats .ats-skills div{ margin-bottom:4px; }
+    .ats .ats-skills b{ display:inline-block; width:150px; }
+    .ats .ats-item{ break-inside:avoid; }
   }
 </style>
 
@@ -307,4 +327,99 @@
 
     </main>
   </div>
+</div>
+
+<!-- ============ VERSIÓN ATS (solo impresión/descarga) ============ -->
+<div class="ats">
+  <h1>Roysel Ek Argaez</h1>
+  <div class="ats-title">Senior Backend Engineer</div>
+  <div class="ats-contact">
+    Cancún, Quintana Roo, México · +52 (998) 101-8326 ·
+    <a href="mailto:royargaez@protonmail.com">royargaez@protonmail.com</a> ·
+    linkedin.com/in/royargaez · github.com/RoyArgaez
+  </div>
+
+  <h2>Perfil</h2>
+  <p>Ingeniero de software con más de 12 años de experiencia en desarrollo backend y arquitectura de sistemas. Construyo y opero productos de software en producción, con responsabilidad completa sobre arquitectura, desarrollo e infraestructura.</p>
+
+  <h2>Trabajo destacado</h2>
+  <div class="ats-item">
+    <div class="ats-item-head">OfertasIA — ofertasia.mx</div>
+    <p>Plataforma de inteligencia de afiliados de e-commerce, con integraciones a Awin, Commission Junction y Mercado Libre, y scoring y matching propio de producto.</p>
+  </div>
+  <div class="ats-item">
+    <div class="ats-item-head">Vialibre</div>
+    <p>Plataforma B2B para sellers de Mercado Libre que evalúa si pueden sostener una campaña comercial sin quebrar stock ni destruir margen.</p>
+  </div>
+
+  <h2>Experiencia</h2>
+
+  <div class="ats-item">
+    <div class="ats-item-head"><span>Lixor · Fundador y Arquitecto Técnico</span><span>Feb 2024 — Presente</span></div>
+    <div class="ats-item-sub">Cancún, México</div>
+    <ul>
+      <li>Diseño y opero la arquitectura de Lixor sobre infraestructura propia.</li>
+      <li>Construí las integraciones con redes de afiliación y marketplaces que alimentan OfertasIA.</li>
+      <li>Desarrollé los algoritmos propios de scoring y matching de producto.</li>
+      <li>Extraje una librería interna compartida (armor-core), reutilizada entre los productos de Lixor.</li>
+      <li>Diseñé un flujo de desarrollo multi-agente (Claude Code, opencode, Codex, orquestados con Herdr) con revisión cruzada obligatoria antes de cada cambio.</li>
+    </ul>
+    <p style="font-size:9pt;color:#555;">Stack: PHP 8.3 · Laravel 13 · PostgreSQL 16 · Redis · Nginx</p>
+  </div>
+
+  <div class="ats-item">
+    <div class="ats-item-head"><span>Desarrollador Backend — Viajes Caribe Maya</span><span>Ene 2023 — Ene 2024</span></div>
+    <div class="ats-item-sub">Cancún, México</div>
+    <ul>
+      <li>Refactoricé código base legacy en PHP y Laravel, reduciendo deuda técnica y mejorando la mantenibilidad del sistema.</li>
+      <li>Optimicé queries complejas en PostgreSQL mediante análisis y rediseño de índices, mejorando tiempos de respuesta en APIs críticas del sistema hotelero.</li>
+      <li>Mejoré el rendimiento de APIs REST del sector turístico con caching estratégico y refactorización de endpoints de alto tráfico.</li>
+      <li>Desarrollé módulos backend integrados con interfaces React, coordinando con el equipo de frontend.</li>
+    </ul>
+  </div>
+
+  <div class="ats-item">
+    <div class="ats-item-head"><span>Desarrollador de Software — Marketing Dirigido</span><span>Oct 2022 — Ene 2023</span></div>
+    <div class="ats-item-sub">Cancún, México</div>
+    <ul>
+      <li>Desarrollé aplicaciones web a medida en PHP, traduciendo requerimientos de negocio en soluciones técnicas estructuradas.</li>
+      <li>Integré y mantuve APIs RESTful para comunicación con servicios externos.</li>
+      <li>Implementé mejoras de rendimiento y usabilidad en sistemas web existentes.</li>
+    </ul>
+  </div>
+
+  <div class="ats-item">
+    <div class="ats-item-head"><span>Desarrollador de Software Senior — IRCSA Software</span><span>Feb 2014 — Jun 2022</span></div>
+    <div class="ats-item-sub">Cancún, México</div>
+    <ul>
+      <li>Diseñé y desarrollé 9+ sistemas web empresariales — facturación electrónica SAT/CFDI, logística, gestión residencial, flota vehicular, náutico y seguridad corporativa — varios en producción desde 2014.</li>
+      <li>Arquitecté una plataforma de facturación electrónica con integración SAT/CFDI: generación, validación y gestión de documentos fiscales en XML.</li>
+      <li>Dirigí proyectos full-stack de principio a fin: análisis con clientes, arquitectura, desarrollo con PHP/Yii/Yii2, entrega de sistemas con 8+ años en producción.</li>
+      <li>Lideré la modernización de aplicaciones legacy y la resolución de bugs críticos en producción.</li>
+      <li>Proyectos: Facturación Electrónica (SAT/CFDI), DHOPAQ (logística), CEGAPER (flota vehicular), Q&amp;P Admon (condominios), Marine Pro-V (náutico), Inteligencia Preventiva (seguridad corporativa).</li>
+    </ul>
+  </div>
+
+  <div class="ats-item">
+    <div class="ats-item-head"><span>Desarrollador de Software — AVANTO</span><span>Jun 2013 — Dic 2013</span></div>
+    <ul>
+      <li>Desarrollé y optimicé aplicaciones web con PHP, Yii Framework y Bootstrap CSS.</li>
+    </ul>
+  </div>
+
+  <h2>Habilidades</h2>
+  <div class="ats-skills">
+    <div><b>Core</b>Agentes de código y orquestación multi-agente · arquitectura de sistemas · integración de LLMs en producción · infraestructura propia · integración de APIs · seguridad aplicada</div>
+    <div><b>Stack</b>PHP, Python, JavaScript/TypeScript, Laravel, React · Claude Code, opencode, Codex, Herdr, MCP, Gemini</div>
+    <div><b>Infraestructura</b>PostgreSQL, MySQL, Redis, Nginx, VPS, Linux, Git, CI/CD</div>
+    <div><b>Prácticas</b>PHPUnit, TDD, Service Layer, Repository Pattern, multi-tenancy, Scrum, Git Flow</div>
+  </div>
+
+  <h2>Educación</h2>
+  <p>Ingeniería en Software — Universidad Politécnica de Quintana Roo<br>
+  Ingeniería en Telemática — Universidad del Caribe<br>
+  Técnico en Informática Administrativa — Universidad del Sur</p>
+
+  <h2>Idiomas</h2>
+  <p>Español — Nativo · Inglés — Intermedio (lectura técnica y documentación profesional)</p>
 </div>
